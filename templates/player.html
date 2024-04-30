@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.3.7/shaka-player.ui.min.js" integrity="sha512-DiwMDsfcYRNZd/li7goVsSG0ewZAdauVdMg0v3FuLtea57aVy2hUH0hu0J/wDRRt5RyQZq76RzkrBNseMmzXOg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.3.7/controls.min.css" integrity="sha512-FvnJOvchkjzz8TYMseY6gGQTdL3Ye3btvWMSoO8brPB9XLDPskq6LkyxwpgjSs1ZALn6lwq5V/5PNWmOd2HKdg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mux.js/5.10.0/mux.min.js"></script>
+  <title>HTML</title>
+
+<style>
+*{
+  margin: 0;
+  padding: 0;
+}
+
+html, body{
+width: 100%;
+height: 100%;
+}
+
+</style>
+</head>
+
+<body>
+  <div data-shaka-player-container style="width:100%; height:100%;"
+         data-shaka-player-cast-receiver-id="8D8C71A7">
+      <video data-shaka-player id="video" style="width:100%;height:100%"></video>
+    </div>
+  
+  <script>
+    let manifestUri = '{{m3u8}}';
+    let manifestUri2 = '{{m3u8_2}}'
+    
+    async function init() {
+      const video = document.getElementById('video');
+      const ui = video['ui'];
+      const controls = ui.getControls();
+      const player = controls.getPlayer();
+      window.player = player;
+      window.ui = ui;
+      player.addEventListener('error', onPlayerErrorEvent);
+      controls.addEventListener('error', onUIErrorEvent);
+      const config = {
+        'controlPanelElements': ['play_pause','mute','time_and_duration','spacer','fullscreen',"picture_in_picture","captions", "Statistics","overflow_menu"]
+      }
+
+      //["controlPanelElements", "addSeekBar", "addPlayPauseButton", "addMuteButton", "addFullscreenButton"]
+      ui.configure(config)
+      try {
+        await player.load(manifestUri);
+        console.log('The video has now been loaded!');
+      } catch (error) {
+        let manifestUri = manifestUri2;
+        init()
+        onPlayerError(error);
+      }
+    }
+    
+    function onPlayerErrorEvent(errorEvent) {
+      onPlayerError(event.detail);
+    }
+    
+    function onPlayerError(error) {
+      console.error('Error code', error.code, 'object', error);
+    }
+    
+    function onUIErrorEvent(errorEvent) {
+      onPlayerError(event.detail);
+    }
+    
+    function initFailed(errorEvent) {
+      console.error('Unable to load the UI library!');
+    }
+    
+    document.addEventListener('shaka-ui-loaded', init);
+    document.addEventListener('shaka-ui-load-failed', initFailed);
+  </script>
+</body>
+</html>
+

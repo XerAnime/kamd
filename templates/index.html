@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="theme-color" content="#201f31" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#201f31" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#201f31">
+    <meta name="msapplication-navbutton-color" content="#201f31">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#201f31">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{url_for('static', filename='apple-touch-icon.png')}}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{url_for('static', filename='favicon-32x32.png')}}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{url_for('static', filename='favicon-16x16.png')}}">
+    <link rel="mask-icon" href="{{url_for('static', filename='safari-pinned-tab.svg')}}" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@40,700,0,200" />
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0" />
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}?v=2">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/index.css')}}?v=2">
+    <title>Skypiea</title>
+</head>
+
+<body>
+    <div class="sidebar_menu">
+        <div class="close_menu">
+            <button><span class="material-symbols-rounded">arrow_back_ios</span> Close Menu</button>
+            
+        </div>
+        <div class="sidebar_menu-links">
+            <a href="#Home"><button class="sidebar_menu-btn">Home</button></a>
+            <a href="#MostPopular"><button class="sidebar_menu-btn">Most Popular</button></a>
+            <a href="#Movies"><button class="sidebar_menu-btn">Movies</button></a>
+            <a href="#TVSeries"><button class="sidebar_menu-btn">TV Series</button></a>
+            <a href="#OVAs"><button class="sidebar_menu-btn">OVAs</button></a>
+            <a href="#ONAs"><button class="sidebar_menu-btn">ONAs</button></a>
+        </div>
+
+    </div>
+    <div class="slideBarOpenBG" onclick="openCloseNav()"></div>
+    <header>
+        <nav class="nav-bar fx fx-center">
+            <h1 class="nav_title fx fx-center"><button class="sidebar"><span
+                        class="material-symbols-rounded">menu</span></button> &nbsp;<img class="nav-logo"
+                    src="{{url_for('static', filename='img/logo-small.png')}}" alt=""> <span
+                    style="color: #8f45ed;font-weight: bolder;">SKY</span>PIEA</h1>
+            <div class="nav_btns">
+                <button class="search"><span class="material-symbols-rounded">search</span></button>
+
+            </div>
+        </nav>
+    
+    </header>
+    <section id="body">
+        <div class="watchAnime">
+            <div class="navigation">
+                <span class="otherButtons">
+                    <button id="btn1" onclick="nextCotainer(1)">Info</button>
+                    <button id="btn2" onclick="nextCotainer(2)">Episodes</button>
+                    <button id="btn3" onclick="nextCotainer(3)">characters</button>
+                    <button id="btn4" onclick="nextCotainer(4)">Songs</button>
+                </span> <button class="close" onclick='closeWatchAnime()'><span class="material-symbols-rounded">close</span></button>
+            </div>
+            <div class="container">
+                <div class="animeBox">
+                    
+                </div>
+                <div class="animeBox"></div>
+                <div class="animeBox">3</div>
+                <div class="animeBox animeSongs">4</div>
+            </div>
+
+        </div>
+
+        <div class="search-box">
+            <input type="text" placeholder="Search anime..." class="search-inp">
+            <button>Search</button>
+        </div>
+        <div class="slideShow">
+            <div class="slider"><button class="prev slideShowBtn" onclick="prev()"><span class="material-symbols-rounded">
+                arrow_back_ios
+                </span></button><button class="next slideShowBtn" onclick="next()"><span class="material-symbols-rounded">
+                    arrow_forward_ios
+                    </span></button>
+            </div>
+        </div>
+
+        <div class="trending">
+            <h2><span>Trending Now</span><small><a href="#/trending">View All</a></small></h2>
+            <div class="button">
+                <button class="prev btnTransparent" onclick="prevTrending()"><span class="material-symbols-rounded">
+                        arrow_back_ios
+                    </span></button><button class="next btnTransparent" onclick="nextTrending()"><span
+                        class="material-symbols-rounded">
+                        arrow_forward_ios
+                    </span></button>
+            </div>
+            <div class="cards">
+
+            </div>
+        </div>
+
+        <div class="trending popular">
+            <h2><span>Most Popular</span><small><a href="#/Popular">View All</a></small></h2>
+            <div class="button">
+                <button class="prev btnTransparent" onclick="prevPopular()"><span class="material-symbols-rounded">
+                        arrow_back_ios
+                    </span></button><button class="next btnTransparent" onclick="nextPopular()"><span
+                        class="material-symbols-rounded">
+                        arrow_forward_ios
+                    </span></button>
+            </div>
+            <div class="cards">
+
+            </div>
+        </div>
+
+        <div id="anime-featured">
+            <div class="airing animes">
+                <h3>Top Airing</h3>
+                <div class="content">
+
+
+
+                </div>
+                <a href="#more">View All ></a>
+            </div>
+            <div class="upcoming animes">
+                <h3>Top Upcoming</h3>
+                <div class="content">
+
+                </div>
+                <a href="#more">View All ></a>
+            </div>
+            <div class="movies animes">
+                <h3>Recommended Movies</h3>
+                <div class="content">
+
+                    
+                </div>
+                <a href="#more">View All ></a>
+            </div>
+            <div class="tv animes">
+                <h3>Most Favorite</h3>
+                <div class="content">
+
+                </div>
+                <a href="#more">View All ></a>
+            </div>
+        </div>
+
+
+
+
+        <br><br><br><footer><hr style="border: 1px solid rgb(102, 102, 102);"><br>
+            <h1>Introducing <span style="color: #3bef1f;font-weight: bolder;">SKY</span>PIEA: Your Cosmic Anime Hub!</h1>
+        <p><span class="highlight">Skypiea</span> isn't just a website—it's your spaceship to the anime universe! Imagine a cozy corner where pixels come alive, and epic tales unfold. That's us!</p>
+        <p><span class="highlight">Why Choose Skypiea?</span></p>
+        <ol>
+            <li><span class="highlight">Anime Wonderland:</span> Our library twinkles with classics and fresh releases. From ninja battles to heartwarming romances, we've got it all.</li>
+            <li><span class="highlight">Smooth Streaming:</span> No cosmic glitches here! Watch without interruptions—like sipping hot cocoa on a starry night.</li>
+            <li><span class="highlight">Cosmic Crew:</span> Join our intergalactic community! Chat about plot twists, share fan art, and geek out together.</li>
+            <li><span class="highlight">Zero Price Tag:</span> Yep, you read that right. Skypiea is free! Because anime love should be accessible to everyone.</li>
+        </ol>
+        <p><span class="highlight">Our Promise:</span> We respect the anime cosmos. All videos come from trusted third-party sources. No shady portals here!</p>
+        <p>So, fellow stargazers, buckle up! <span class="highlight">Skypiea</span> awaits. Launch into anime adventures, and may your pixels shine brighter than shooting stars! 🌟✨</p>
+        <p>Welcome aboard, cosmic traveler! 🛸</p>
+        <br><br><br></footer>
+    </section>
+    
+    <script src="{{url_for('static', filename='js/components.js')}}"></script>
+    <script src="{{url_for('static', filename='js/index.js')}}"></script>
+</body>
+</html>
